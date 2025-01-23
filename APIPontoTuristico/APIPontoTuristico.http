@@ -1,0 +1,6 @@
+@APIPontoTuristico_HostAddress = http://localhost:5268
+
+GET {{APIPontoTuristico_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
