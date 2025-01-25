@@ -6,7 +6,7 @@ namespace APIPontoTuristico.Repositories.Interfaces
     {
         Task<List<PontoTuristicoModel>> GetAll();
         Task<List<PontoTuristicoModel>> GetByName(string nome);
-        Task<List<PontoTuristicoModel>> GetByDescription(string nome);
+        Task<List<PontoTuristicoModel>> GetByDescription(string description);
         Task<PontoTuristicoModel> GetById(int id);
         Task<PontoTuristicoModel> Insert(PontoTuristicoModel pontosTuristico);
         Task<PontoTuristicoModel> Update(int id, PontoTuristicoModel pontoTuristico);
