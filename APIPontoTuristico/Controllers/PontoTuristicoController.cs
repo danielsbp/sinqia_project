@@ -36,15 +36,33 @@ namespace APIPontoTuristico.Controller
         [HttpPost]
         public async Task<ActionResult<PontoTuristicoModel>> Insert([FromBody] PontoTuristicoModel pontoTuristicoModel) 
         {
-            PontoTuristicoModel pontoTuristico = await _pontoTuristicoReposity.Insert(pontoTuristicoModel);
+            try {
 
-            return Ok(pontoTuristico);
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                PontoTuristicoModel pontoTuristico = await _pontoTuristicoReposity.Insert(pontoTuristicoModel);
+                return Ok(pontoTuristico);
+            }
+            catch(Exception e)
+            {
+                return StatusCode(500, "Não foi possível adicionar ponto turístico.");
+            }
+            
         }
 
         [HttpPut("{id}")]
         public async Task<ActionResult<PontoTuristicoModel>> Update([FromBody] PontoTuristicoModel pontoTuristicoModel, int id)
         {
             pontoTuristicoModel.Id = id;
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             PontoTuristicoModel pontoTuristico = await _pontoTuristicoReposity.Update(id, pontoTuristicoModel);
             return Ok(pontoTuristico);
         }
