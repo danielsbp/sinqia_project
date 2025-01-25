@@ -228,6 +228,13 @@
   "components": {
     "schemas": {
       "PontoTuristicoModel": {
+        "required": [
+          "cidade",
+          "descricao",
+          "estado",
+          "localizacao",
+          "nome"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -235,20 +242,24 @@
             "format": "int32"
           },
           "localizacao": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 150,
+            "minLength": 0,
+            "type": "string"
           },
           "descricao": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
           },
           "cidade": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
           },
           "estado": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 2,
+            "minLength": 0,
+            "type": "string"
           },
           "criadoEm": {
             "type": "string",
@@ -256,8 +267,9 @@
             "nullable": true
           },
           "nome": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
           }
         },
         "additionalProperties": false
