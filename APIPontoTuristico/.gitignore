@@ -1,2 +1,11 @@
-/.vs
-/bin
+# Diretórios de build
+bin/
+obj/
+
+# Arquivos gerados pelo Visual Studio e pelo sistema
+.vs/
+*.dtbcache.v2
+
+# Logs e outros arquivos temporários
+*.log
+*.tmp
