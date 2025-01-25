@@ -1,4 +1,5 @@
-﻿using APIPontoTuristico.Models;
+﻿using APIPontoTuristico.Data.Map;
+using APIPontoTuristico.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace APIPontoTuristico.Data
@@ -15,6 +16,7 @@ namespace APIPontoTuristico.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new PontoTuristicoMap());
             base.OnModelCreating(modelBuilder);
         }
     }
