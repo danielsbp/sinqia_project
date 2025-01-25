@@ -56,22 +56,33 @@ namespace APIPontoTuristico.Controller
         [HttpPut("{id}")]
         public async Task<ActionResult<PontoTuristicoModel>> Update([FromBody] PontoTuristicoModel pontoTuristicoModel, int id)
         {
-            pontoTuristicoModel.Id = id;
-
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
+                pontoTuristicoModel.Id = id;
+
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                PontoTuristicoModel pontoTuristico = await _pontoTuristicoReposity.Update(id, pontoTuristicoModel);
+                return Ok(pontoTuristico);
+            }
+            catch(Exception e)
+            {
+                return StatusCode(500, "Não foi possível editar ponto turístico.");
             }
 
-            PontoTuristicoModel pontoTuristico = await _pontoTuristicoReposity.Update(id, pontoTuristicoModel);
-            return Ok(pontoTuristico);
         }
 
         [HttpDelete("{id}")]
         public async Task<bool> Delete(int id)
         {
+
             bool deleted = await _pontoTuristicoReposity.Delete(id);
             return deleted;
+            
+            
         }
     }
 }
