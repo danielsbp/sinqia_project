@@ -33,6 +33,21 @@ namespace APIPontoTuristico.Controller
             return Ok(pontoTuristico);
         }
 
+        [HttpGet("name/{name}")]
+        public async Task<ActionResult<PontoTuristicoModel>> getPontoTuristicoByName(string name)
+        {
+            List<PontoTuristicoModel> pontoTuristico = await _pontoTuristicoReposity.GetByName(name);
+            return Ok(pontoTuristico);
+        }
+
+        [HttpGet("description/{description}")]
+        public async Task<ActionResult<PontoTuristicoModel>> getPontoTuristicoByDescription(string description)
+        {
+            List<PontoTuristicoModel> pontoTuristico = await _pontoTuristicoReposity.GetByDescription(description);
+            return Ok(pontoTuristico);
+        }
+
+
         [HttpPost]
         public async Task<ActionResult<PontoTuristicoModel>> Insert([FromBody] PontoTuristicoModel pontoTuristicoModel) 
         {
@@ -84,6 +99,7 @@ namespace APIPontoTuristico.Controller
             
             
         }
+
     }
 }
  
