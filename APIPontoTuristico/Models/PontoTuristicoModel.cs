@@ -8,6 +8,6 @@
         public string? Cidade { get; set; }
         public string? Estado { get; set; }
         public DateTime? CriadoEm { get; set; }
-        public object Nome { get; internal set; }
+        public string Nome { get; set; }
     }
 }
