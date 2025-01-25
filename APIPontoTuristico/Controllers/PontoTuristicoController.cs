@@ -1,17 +1,57 @@
 ﻿using APIPontoTuristico.Models;
+using APIPontoTuristico.Repositories.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APIPontoTuristico.Controller
 {
-    [Route("api/[controller]")]
+    [Route("api/ponto_turistico")]
     [ApiController]
     public class PontoTuristicoController : ControllerBase
     {
-        [HttpGet]
-        public ActionResult<List<PontoTuristicoModel>> getPontoTuristico()
+        private readonly IPontoTuristicoRepository _pontoTuristicoReposity;
+
+        public PontoTuristicoController(IPontoTuristicoRepository pontoTuristicoReposity)
         {
-            return Ok();
+            this._pontoTuristicoReposity = pontoTuristicoReposity;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<PontoTuristicoModel>>> getAllPontosTuristicos()
+        {
+            List<PontoTuristicoModel> pontosTuristicos = await _pontoTuristicoReposity.GetAll();
+            return Ok(pontosTuristicos);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<PontoTuristicoModel>> getPontoTuristicoById(int id)
+        {
+            PontoTuristicoModel pontoTuristico = await _pontoTuristicoReposity.GetById(id);
+
+            return Ok(pontoTuristico);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<PontoTuristicoModel>> Insert([FromBody] PontoTuristicoModel pontoTuristicoModel) 
+        {
+            PontoTuristicoModel pontoTuristico = await _pontoTuristicoReposity.Insert(pontoTuristicoModel);
+
+            return Ok(pontoTuristico);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<PontoTuristicoModel>> Update([FromBody] PontoTuristicoModel pontoTuristicoModel, int id)
+        {
+            pontoTuristicoModel.Id = id;
+            PontoTuristicoModel pontoTuristico = await _pontoTuristicoReposity.Update(id, pontoTuristicoModel);
+            return Ok(pontoTuristico);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<bool> Delete(int id)
+        {
+            bool deleted = await _pontoTuristicoReposity.Delete(id);
+            return deleted;
         }
     }
 }

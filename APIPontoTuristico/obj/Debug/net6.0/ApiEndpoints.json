@@ -1,8 +1,8 @@
 [
   {
     "ContainingType": "APIPontoTuristico.Controller.PontoTuristicoController",
-    "Method": "getPontoTuristico",
-    "RelativePath": "api/PontoTuristico",
+    "Method": "getAllPontosTuristicos",
+    "RelativePath": "api/ponto_turistico",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -10,6 +10,115 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.List\u00601[[APIPontoTuristico.Models.PontoTuristicoModel, APIPontoTuristico, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "APIPontoTuristico.Controller.PontoTuristicoController",
+    "Method": "Insert",
+    "RelativePath": "api/ponto_turistico",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pontoTuristicoModel",
+        "Type": "APIPontoTuristico.Models.PontoTuristicoModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "APIPontoTuristico.Models.PontoTuristicoModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "APIPontoTuristico.Controller.PontoTuristicoController",
+    "Method": "getPontoTuristicoById",
+    "RelativePath": "api/ponto_turistico/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "APIPontoTuristico.Models.PontoTuristicoModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "APIPontoTuristico.Controller.PontoTuristicoController",
+    "Method": "Update",
+    "RelativePath": "api/ponto_turistico/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pontoTuristicoModel",
+        "Type": "APIPontoTuristico.Models.PontoTuristicoModel",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "APIPontoTuristico.Models.PontoTuristicoModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "APIPontoTuristico.Controller.PontoTuristicoController",
+    "Method": "Delete",
+    "RelativePath": "api/ponto_turistico/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
         "MediaTypes": [
           "text/plain",
           "application/json",

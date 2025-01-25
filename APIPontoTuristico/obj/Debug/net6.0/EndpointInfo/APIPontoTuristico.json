@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/PontoTuristico": {
+    "/api/ponto_turistico": {
       "get": {
         "tags": [
           "PontoTuristico"
@@ -41,6 +41,187 @@
             }
           }
         }
+      },
+      "post": {
+        "tags": [
+          "PontoTuristico"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PontoTuristicoModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PontoTuristicoModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PontoTuristicoModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PontoTuristicoModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PontoTuristicoModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PontoTuristicoModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ponto_turistico/{id}": {
+      "get": {
+        "tags": [
+          "PontoTuristico"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PontoTuristicoModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PontoTuristicoModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PontoTuristicoModel"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "PontoTuristico"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PontoTuristicoModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PontoTuristicoModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PontoTuristicoModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PontoTuristicoModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PontoTuristicoModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PontoTuristicoModel"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "PontoTuristico"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -53,7 +234,7 @@
             "type": "integer",
             "format": "int32"
           },
-          "nome": {
+          "localizacao": {
             "type": "string",
             "nullable": true
           },
@@ -65,10 +246,6 @@
             "type": "string",
             "nullable": true
           },
-          "localizacao": {
-            "type": "string",
-            "nullable": true
-          },
           "estado": {
             "type": "string",
             "nullable": true
@@ -76,6 +253,10 @@
           "criadoEm": {
             "type": "string",
             "format": "date-time",
+            "nullable": true
+          },
+          "nome": {
+            "type": "string",
             "nullable": true
           }
         },

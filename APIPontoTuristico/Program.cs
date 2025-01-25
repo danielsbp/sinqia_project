@@ -1,3 +1,8 @@
+using APIPontoTuristico.Data;
+using APIPontoTuristico.Repositories;
+using APIPontoTuristico.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
 namespace APIPontoTuristico
 {
     public class Program
@@ -13,6 +18,11 @@ namespace APIPontoTuristico
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddEntityFrameworkSqlServer().AddDbContext<PontoTuristicoDBContext>(
+                options => options.UseSqlServer(builder.Configuration.GetConnectionString("DataBase"))    
+            );
+
+            builder.Services.AddScoped<IPontoTuristicoRepository, PontoTuristicoRepository>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

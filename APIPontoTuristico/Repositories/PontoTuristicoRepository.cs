@@ -31,7 +31,7 @@ namespace APIPontoTuristico.Repositories
 
         public async Task<List<PontoTuristicoModel>> GetByName(string name)
         {
-            return await _dbContext.PontosTuristicos.Where(x => EF.Functions.Like(x.Nome, $"%{name}%"))
+            return await _dbContext.PontosTuristicos.Where(x => EF.Functions.Like((string)x.Nome, $"%{name}%"))
             .ToListAsync();
         }
 
