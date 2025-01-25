@@ -20,7 +20,9 @@ namespace APIPontoTuristico.Controller
         public async Task<ActionResult<List<PontoTuristicoModel>>> getAllPontosTuristicos()
         {
             List<PontoTuristicoModel> pontosTuristicos = await _pontoTuristicoReposity.GetAll();
-            return Ok(pontosTuristicos);
+            List<PontoTuristicoModel> pontosTuristicosOrdenados = pontosTuristicos.OrderByDescending(p => p.CriadoEm).ToList();
+
+            return Ok(pontosTuristicosOrdenados);
         }
 
         [HttpGet("{id}")]
