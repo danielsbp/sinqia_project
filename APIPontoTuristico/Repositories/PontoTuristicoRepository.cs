@@ -23,17 +23,16 @@ namespace APIPontoTuristico.Repositories
             return await _dbContext.PontosTuristicos.ToListAsync();
         }
 
-        public async Task<List<PontoTuristicoModel>> GetByDescription(string description)
+        public async Task<List<PontoTuristicoModel>> GetByTerm(string term)
         {
-            return await _dbContext.PontosTuristicos.Where(x => EF.Functions.Like(x.Descricao, $"%{description}%"))
+            return await _dbContext.PontosTuristicos.Where(
+                x => EF.Functions.Like(x.Descricao, $"%{term}%") 
+                || EF.Functions.Like(x.Nome, $"%{term}%")
+                || EF.Functions.Like(x.Localizacao, $"%{term}%")
+            ) 
             .ToListAsync();
         }
 
-        public async Task<List<PontoTuristicoModel>> GetByName(string name)
-        {
-            return await _dbContext.PontosTuristicos.Where(x => EF.Functions.Like((string)x.Nome, $"%{name}%"))
-            .ToListAsync();
-        }
 
         public async Task<PontoTuristicoModel> Insert(PontoTuristicoModel pontosTuristico)
         {

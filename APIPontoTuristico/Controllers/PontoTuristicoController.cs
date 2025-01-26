@@ -33,19 +33,13 @@ namespace APIPontoTuristico.Controller
             return Ok(pontoTuristico);
         }
 
-        [HttpGet("name/{name}")]
-        public async Task<ActionResult<PontoTuristicoModel>> getPontoTuristicoByName(string name)
+        [HttpGet("search/{term}")]
+        public async Task<ActionResult<PontoTuristicoModel>> getPontoTuristicoByTerm(string term)
         {
-            List<PontoTuristicoModel> pontoTuristico = await _pontoTuristicoReposity.GetByName(name);
+            List<PontoTuristicoModel> pontoTuristico = await _pontoTuristicoReposity.GetByTerm(term);
             return Ok(pontoTuristico);
         }
 
-        [HttpGet("description/{description}")]
-        public async Task<ActionResult<PontoTuristicoModel>> getPontoTuristicoByDescription(string description)
-        {
-            List<PontoTuristicoModel> pontoTuristico = await _pontoTuristicoReposity.GetByDescription(description);
-            return Ok(pontoTuristico);
-        }
 
 
         [HttpPost]
