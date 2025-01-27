@@ -3,6 +3,8 @@ import PontosTuristicosService from "../../services/PontosTuristicosService";
 import { toast, ToastContainer } from "react-toastify";
 import formatDate from "../../utils/formatDate";
 import Loader from "../Loader/Loader";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faTrash} from '@fortawesome/free-solid-svg-icons'
 
 class ListagemPontos extends Component {
   constructor(props) {
@@ -14,6 +16,7 @@ class ListagemPontos extends Component {
       loading: false,
       currentPage: 1,
       itemsPerPage: 5,
+      hoverId: null, 
     };
     this.service = new PontosTuristicosService();
   }
@@ -60,8 +63,30 @@ class ListagemPontos extends Component {
     this.setState({ currentPage: pageNumber });
   };
 
+  handleMouseEnter = (id) => {
+    this.setState({ hoverId: id });
+  };
+
+  handleMouseLeave = () => {
+    this.setState({ hoverId: null });
+  };
+
+  handleDelete = async (id) => {
+    const { pontosTuristicos } = this.state;
+    try {
+      const deletedData = await this.service.deletePontoTuristico(id);
+      this.setState({
+        pontosTuristicos: pontosTuristicos.filter((ponto) => ponto.id !== id),
+      });
+      toast("Ponto turístico excluído com sucesso.");
+    } catch (error) {
+      console.error("Erro ao excluir ponto turístico", error);
+      toast.error("Erro ao excluir ponto turístico.");
+    }
+  };
+
   render() {
-    const { pontosTuristicos, searchTerm, loading, currentPage, itemsPerPage } = this.state;
+    const { pontosTuristicos, searchTerm, loading, currentPage, itemsPerPage, hoverId } = this.state;
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -85,8 +110,9 @@ class ListagemPontos extends Component {
                 value={searchTerm}
                 onChange={this.handleChange}
               />
+              
               <button className="btn btn-outline-secondary" onClick={this.handleSearch}>
-                Pesquisar
+                 Pesquisar
               </button>
 
               <ToastContainer
@@ -109,10 +135,25 @@ class ListagemPontos extends Component {
                   key={ponto.id}
                   className="list-group-item list-group-item-action"
                   onClick={() => navigate(`/editar/${ponto.id}`)}
+                  onMouseEnter={() => this.handleMouseEnter(ponto.id)} 
+                  onMouseLeave={this.handleMouseLeave} 
                 >
                   <h5>{ponto.nome}</h5>
                   <p>{ponto.descricao}</p>
                   <small>Publicado em: {formatDate(ponto.criadoEm)}</small>
+                  
+                  {/* Botão de exclusão (visível apenas ao passar o mouse) */}
+                  {hoverId === ponto.id && (
+                    <button
+                      className="btn btn-danger btn-sm float-end"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        this.handleDelete(ponto.id);
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faTrash} />
+                    </button>
+                  )}
                 </div>
               ))}
             </div>
