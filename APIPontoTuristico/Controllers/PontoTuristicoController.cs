@@ -36,8 +36,9 @@ namespace APIPontoTuristico.Controller
         [HttpGet("search/{term}")]
         public async Task<ActionResult<PontoTuristicoModel>> getPontoTuristicoByTerm(string term)
         {
-            List<PontoTuristicoModel> pontoTuristico = await _pontoTuristicoReposity.GetByTerm(term);
-            return Ok(pontoTuristico);
+            List<PontoTuristicoModel> pontosTuristicos = await _pontoTuristicoReposity.GetByTerm(term);
+            List<PontoTuristicoModel> pontosTuristicosOrdenados = pontosTuristicos.OrderByDescending(p => p.CriadoEm).ToList();
+            return Ok(pontosTuristicosOrdenados);
         }
 
 
