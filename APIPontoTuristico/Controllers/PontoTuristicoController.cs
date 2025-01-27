@@ -52,6 +52,8 @@ namespace APIPontoTuristico.Controller
                     return BadRequest(ModelState);
                 }
 
+                pontoTuristicoModel.CriadoEm = DateTime.Now;
+
                 PontoTuristicoModel pontoTuristico = await _pontoTuristicoReposity.Insert(pontoTuristicoModel);
                 return Ok(pontoTuristico);
             }

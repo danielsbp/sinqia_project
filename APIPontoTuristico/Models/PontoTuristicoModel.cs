@@ -21,6 +21,7 @@ namespace APIPontoTuristico.Models
         [Required(ErrorMessage = "É necessário informar o estado do ponto turístico.")]
         [StringLength(2, ErrorMessage = "Use a sigla do estado. Por exemplo: SP.")]
         public string? Estado { get; set; }
+
         public DateTime? CriadoEm { get; set; }
 
 

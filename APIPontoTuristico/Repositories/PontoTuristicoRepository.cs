@@ -56,7 +56,7 @@ namespace APIPontoTuristico.Repositories
             pontoTuristicoById.Cidade = pontoTuristico.Cidade;
             pontoTuristicoById.Estado = pontoTuristico.Estado;
             pontoTuristicoById.Localizacao = pontoTuristico.Localizacao;
-            pontoTuristicoById.CriadoEm = pontoTuristico.CriadoEm;
+            
 
             _dbContext.PontosTuristicos.Update(pontoTuristicoById);
             await _dbContext.SaveChangesAsync();
