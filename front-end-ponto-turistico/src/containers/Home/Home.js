@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route, useNavigate, useParams } from "
 import ListagemPontos from "../../components/ListagemPontos/ListagemPontos";
 import CadastroEdicaoPonto from "../../components/CadastroEdicaoPonto/CadastroEdicaoPonto";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 
 function withRouter(Component) {
@@ -33,7 +33,8 @@ class App extends Component {
     return (
       <div className="container mt-4">
           <div className="d-flex justify-content-between align-items-center mb-4">
-            <h1 className="logo"><b>Pontos Turísticos</b></h1>
+            <img src="./logo.webp" alt='Logotipo' style = {{width: "150px", borderRadius: "100px"}} />
+            {/* <h1 className="logo"><b>Pontos Turísticos</b></h1> */}
             <button
               className="btn btn-success"
               onClick={() => { document.location.href="/cadastro"; }}

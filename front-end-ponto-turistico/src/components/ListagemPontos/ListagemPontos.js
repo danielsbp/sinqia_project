@@ -101,11 +101,12 @@ class ListagemPontos extends Component {
         {loading && <Loader />}
         {!loading && (
           <div>
+            <h2>Pontos Turísticos</h2>
             <div className="input-group mb-4">
               <input
                 type="text"
                 className="form-control"
-                placeholder="Pesquisar ponto turístico"
+                placeholder="Busque por localização, nome ou descrição."
                 name="searchTerm"
                 value={searchTerm}
                 onChange={this.handleChange}
@@ -140,6 +141,7 @@ class ListagemPontos extends Component {
                 >
                   <h5>{ponto.nome}</h5>
                   <p>{ponto.descricao}</p>
+                  <p>{ponto.localizacao}, {ponto.cidade} - {ponto.estado}</p>
                   <small>Publicado em: {formatDate(ponto.criadoEm)}</small>
                   
                   {/* Botão de exclusão (visível apenas ao passar o mouse) */}
