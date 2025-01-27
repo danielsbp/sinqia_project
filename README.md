@@ -22,8 +22,22 @@ git clone https://github.com/danielsbp/sinqia_project
 Este projeto foi feito com .NET 6.0.301
 
 #### Passo a Passo
-- Abra seu Visual Studio (Foi usado a versão 2022)
-- Clique em "Abrir um projeto ou uma solução" e procure pelo arquivo de solução sinqia_project.sln
+- Abra o terminal na raiz do projeto e vá para a pasta APIPontoTuristico
+```
+cd APIPontoTuristico
+```
+- No arquivo global.json, coloque a versão exata do seu SDK do .NET 6
+```
+{
+    "sdk": {
+        "version": "6.0.428"
+    }
+}
+```
+- Instale as dependências do projeto rodando o comando:
+```
+dotnet restore
+```
 - Procure pelo arquivo appsettings.json e troque a propriedade "DataBase" da propriedade "ConnectionStrings" de acordo com as suas credênciais do seu servidor de banco de dados:
 
 Exemplo de ConnectionStrings:
@@ -32,15 +46,10 @@ Exemplo de ConnectionStrings:
     "DataBase": "Server=./;Database=PontoTuristico;User Id=usuario;Password=1234"
 }
 ```
-
-- No menu superior, clique em "Ferramentas" -> "Gerenciador de Pacotes do NuGet" -> "Console do Gerenciador de Pacotes"
-- Com ele aberto, digite:
-
+- Rode a aplicação com o comando:
 ```
-Update-Database -Context PontoTuristicoDBContext
+dotnet run
 ```
-- Rode o projeto apertando F5
-
 Pronto. Feito isso, a API estará rodando normalmente
 
 ### Front-end
