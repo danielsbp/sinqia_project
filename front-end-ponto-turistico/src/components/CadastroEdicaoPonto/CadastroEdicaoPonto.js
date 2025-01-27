@@ -3,6 +3,8 @@ import PontosTuristicosService from "../../services/PontosTuristicosService";
 import Loader from "../Loader/Loader";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios"; 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft, faSave } from "@fortawesome/free-solid-svg-icons";
 
 class CadastroEdicaoPonto extends Component {
   constructor(props) {
@@ -260,16 +262,18 @@ class CadastroEdicaoPonto extends Component {
                 </div>
               </div>
 
-              <button type="submit" className="btn btn-primary">
-                {id ? "Salvar" : "Cadastrar"}
-              </button>
-              <button
-                type="button"
-                className="btn btn-secondary ms-2"
-                onClick={() => navigate("/")}
-              >
-                Voltar
-              </button>
+              <div className="d-flex">
+                <button type="submit" className="btn btn-primary">
+                  <FontAwesomeIcon icon={faSave} /> {id ? "Salvar" : "Cadastrar"}
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-danger ms-auto" style={{ "borderRadius" : "100px" }}
+                  onClick={() => navigate("/")}
+                >
+                  <FontAwesomeIcon icon={faArrowLeft} />
+                </button>
+              </div>
             </form>
           </div>
         )}

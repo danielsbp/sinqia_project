@@ -4,7 +4,7 @@ import { toast, ToastContainer } from "react-toastify";
 import formatDate from "../../utils/formatDate";
 import Loader from "../Loader/Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faTrash} from '@fortawesome/free-solid-svg-icons'
+import {faArrowLeft, faArrowRight, faSearch, faTrash} from '@fortawesome/free-solid-svg-icons'
 
 class ListagemPontos extends Component {
   constructor(props) {
@@ -112,7 +112,7 @@ class ListagemPontos extends Component {
               />
               
               <button className="btn btn-outline-secondary" onClick={this.handleSearch}>
-                 Pesquisar
+                <FontAwesomeIcon icon={faSearch} /> Pesquisar
               </button>
 
               <ToastContainer
@@ -160,11 +160,12 @@ class ListagemPontos extends Component {
 
             {/* Paginação */}
             {totalPages > 1 && (
-              <nav>
+              <nav className="mt-3">
                 <ul className="pagination justify-content-center">
                   <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
-                    <button className="page-link" onClick={() => this.paginate(currentPage - 1)}>
-                      Voltar
+                    <button className="page-link" onClick={() => this.paginate(currentPage - 1)}
+                      style={{ borderTopLeftRadius: "100px", borderBottomLeftRadius: "100px" }}>
+                      <FontAwesomeIcon icon={faArrowLeft} />
                     </button>
                   </li>
                   {[...Array(totalPages)].map((_, index) => (
@@ -180,8 +181,9 @@ class ListagemPontos extends Component {
                   <li
                     className={`page-item ${currentPage === totalPages ? "disabled" : ""}`}
                   >
-                    <button className="page-link" onClick={() => this.paginate(currentPage + 1)}>
-                      Avançar
+                    <button className="page-link" onClick={() => this.paginate(currentPage + 1)} 
+                    style={{ borderTopRightRadius: "100px", borderBottomRightRadius: "100px" }}>
+                    <FontAwesomeIcon icon={faArrowRight} />
                     </button>
                   </li>
                 </ul>
