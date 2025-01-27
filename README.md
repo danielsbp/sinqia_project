@@ -26,7 +26,7 @@ Este projeto foi feito com .NET 6.0.301
 ```
 cd APIPontoTuristico
 ```
-- No arquivo global.json, coloque a versão exata do seu SDK do .NET 6
+- No arquivo global.json, coloque a versão exata do seu SDK do .NET 6 (Você pode usar ```dotnet --list-sdks``` no terminal para saber)
 ```
 {
     "sdk": {
@@ -57,7 +57,7 @@ Pronto. Feito isso, a API estará rodando normalmente
 Este projeto foi criado pelo NPX. A versão do NPM é 10.8.2
 
 #### Passo a Passo
-Verifique se está na pasta raiz do projeto e rode os seguintes comandos
+Verifique se está na pasta raiz do projeto e rode os seguintes comandos para baixar as dependências:
 
 ```
 cd .\front-end-ponto-turistico\
