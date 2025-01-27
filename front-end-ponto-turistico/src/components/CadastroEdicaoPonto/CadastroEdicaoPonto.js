@@ -30,9 +30,11 @@ class CadastroEdicaoPonto extends Component {
     const { id } = this.props.params;
     if (id) {
       this.fetchPontoTuristico(id);
+      
     }
 
     this.loadEstados();
+    
   }
 
   fetchPontoTuristico = async (id) => {
@@ -41,6 +43,8 @@ class CadastroEdicaoPonto extends Component {
       const data = await this.service.getPontoTuristicoById(id);
       this.setState(data);
       this.setState({ loading: false });
+
+      this.loadCidades(this.state.estado);
     } catch (error) {
       console.error("Erro ao buscar ponto turístico", error);
       this.setState({ loading: false });
@@ -62,7 +66,7 @@ class CadastroEdicaoPonto extends Component {
   };
 
   loadCidades = async (estado) => {
-    this.setState({ loadingCidades: true, cidade: "" });
+    this.setState({ loadingCidades: true });
     try {
       const response = await axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${estado}/municipios`);
       
