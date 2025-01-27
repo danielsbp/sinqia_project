@@ -11,6 +11,16 @@ namespace APIPontoTuristico
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("PermitirTudo", policy =>
+                {
+                    policy.AllowAnyOrigin()  
+                          .AllowAnyMethod()  
+                          .AllowAnyHeader(); 
+                });
+            });
+
             // Add services to the container.
 
             builder.Services.AddControllers();
@@ -38,6 +48,8 @@ namespace APIPontoTuristico
 
 
             app.MapControllers();
+
+            app.UseCors("PermitirTudo");
 
             app.Run();
         }
